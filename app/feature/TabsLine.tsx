@@ -38,27 +38,25 @@ export function TabsDemo() {
   const [genre, setGenre] = useState("action");
   const [movies, setMovies] = useState<any[]>([]);
   const [active, setActive] = useState<number[]>([]);
-  useEffect(() => {
-    const getMovies = async () => {
-      let url = "";
+useEffect(() => {
+  const getMovies = async () => {
+    let url = "";
 
-      if (genre) {
-        const genreId = genreIds[genre];
-        url = `/api/movies?genre=${genreId}`;
-      } else {
-        url = `/api/movies?category=${category}`;
-      }
+    if (genre) {
+      const genreId = genreIds[genre];
+      url = `/api/movies?category=${category}&genre=${genreId}`;
+    } else {
+      url = `/api/movies?category=${category}`;
+    }
 
-      const res = await fetch(url);
-      const data = await res.json();
+    const res = await fetch(url);
+    const data = await res.json();
 
-      setMovies(data.results || []);
-    };
+    setMovies(data.results || []);
+  };
 
-    getMovies();
-  }, [category, genre]);
-
-
+  getMovies();
+}, [category, genre]);
   return (
     <div className="w-full">
 

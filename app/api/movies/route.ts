@@ -8,12 +8,33 @@ export async function GET(request: Request) {
 
   let endpoint = "";
 
+  // وقتی ژانر انتخاب شده
   if (genre) {
-    endpoint = `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&sort_by=popularity.desc`;
-  } else {
     switch (category) {
       case "popular":
-        endpoint = "https://api.themoviedb.org/3/movie/popular";
+        endpoint =
+          `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&sort_by=popularity.desc`;
+        break;
+
+      case "recent":
+        endpoint =
+          `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&sort_by=primary_release_date.desc`;
+        break;
+
+      case "trending":
+      default:
+        endpoint =
+          `https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&sort_by=popularity.desc`;
+        break;
+    }
+  }
+
+  // وقتی ژانر انتخاب نشده
+  else {
+    switch (category) {
+      case "popular":
+        endpoint =
+          "https://api.themoviedb.org/3/movie/popular";
         break;
 
       case "recent":
@@ -23,7 +44,8 @@ export async function GET(request: Request) {
 
       case "trending":
       default:
-        endpoint = "https://api.themoviedb.org/3/trending/movie/day";
+        endpoint =
+          "https://api.themoviedb.org/3/trending/movie/day";
         break;
     }
   }
@@ -46,8 +68,13 @@ export async function GET(request: Request) {
 
   if (!res.ok) {
     return NextResponse.json(
-      { error: "TMDB Error", details: text },
-      { status: res.status }
+      {
+        error: "TMDB Error",
+        details: text,
+      },
+      {
+        status: res.status,
+      }
     );
   }
 
@@ -55,8 +82,12 @@ export async function GET(request: Request) {
     return NextResponse.json(JSON.parse(text));
   } catch {
     return NextResponse.json(
-      { error: "TMDB returned invalid JSON" },
-      { status: 500 }
+      {
+        error: "TMDB returned invalid JSON",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
