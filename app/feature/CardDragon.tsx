@@ -18,7 +18,7 @@ const CardDragon = () => {
                     <Star className='fill-white' color='white' size={18} />
                     <Star className='fill-white' color='white' size={18} />
                     <Star className='fill-white' color='white' size={18} />
-                    <Star className='fill-white' color='white' size={18} />             
+                    <Star className='fill-white' color='white'  size={18} />             
                                                                          
 
                 </div>

@@ -38,96 +38,84 @@ export function TabsDemo() {
   const [genre, setGenre] = useState("action");
   const [movies, setMovies] = useState<any[]>([]);
   const [active, setActive] = useState<number[]>([]);
-useEffect(() => {
-  const getMovies = async () => {
-    let url = "";
+  useEffect(() => {
+    const getMovies = async () => {
+      let url = "";
 
-    if (genre) {
-      const genreId = genreIds[genre];
-      url = `/api/movies?category=${category}&genre=${genreId}`;
-    } else {
-      url = `/api/movies?category=${category}`;
-    }
+      if (genre) {
+        const genreId = genreIds[genre];
+        url = `/api/movies?category=${category}&genre=${genreId}`;
+      } else {
+        url = `/api/movies?category=${category}`;
+      }
 
-    const res = await fetch(url);
-    const data = await res.json();
+      const res = await fetch(url);
+      const data = await res.json();
 
-    setMovies(data.results || []);
-  };
+      setMovies(data.results || []);
+    };
 
-  getMovies();
-}, [category, genre]);
+    getMovies();
+  }, [category, genre]);
   return (
     <div className="w-full">
-
-
 
       <Tabs
         value={category}
         onValueChange={setCategory}
         className="w-full"
       >
-        <TabsList className="w-full bg-transparent">
+        <TabsList className="w-full bg-transparent flex justify-center">
 
-          <Swiper
-            slidesPerView={2}
-            spaceBetween={10}
-            navigation={true}
-            modules={[Navigation]}
-            breakpoints={{
-              640: {
-                slidesPerView: 3,
-              },
-              1024: {
-                slidesPerView: 4,
-              },
-            }}
-            className="w-full"
-          >
+          <div className="w-full max-w-3xl">
+            <Swiper
+              slidesPerView={2}
+              spaceBetween={10}
+              navigation={true}
+              modules={[Navigation]}
+              breakpoints={{
+                640: {
+                  slidesPerView: 3,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+              className="w-full"
+            >
 
-            <SwiperSlide>
-              <TabsTrigger
-                value="trending"
-                className="  w-full !bg-transparent  text-sm sm:text-base lg:text-lg  !text-gray-400  border-0  shadow-none  rounded-none
-                px-1  py-2  hover:!bg-transparent  hover:!text-gray-400  data-[state=active]:!bg-transparent  data-[state=active]:!text-gray-400  data-[state=active]:shadow-none">
-                <TrendingUp size={18} />
-                Trending
-              </TabsTrigger>
-            </SwiperSlide>
+              <SwiperSlide>
+                <TabsTrigger
+                  value="trending"
+                  className="w-full !bg-transparent text-sm sm:text-base lg:text-lg !text-gray-400 border-0 shadow-none rounded-none px-1 py-2 hover:!bg-transparent hover:!text-gray-400 data-[state=active]:!bg-transparent data-[state=active]:!text-gray-400 data-[state=active]:shadow-none"
+                >
+                  <TrendingUp size={18} />
+                  Trending
+                </TabsTrigger>
+              </SwiperSlide>
 
+              <SwiperSlide>
+                <TabsTrigger
+                  value="popular"
+                  className="w-full !bg-transparent text-sm sm:text-base lg:text-lg !text-gray-400 border-0 shadow-none rounded-none px-1 py-2 hover:!bg-transparent hover:!text-gray-400 data-[state=active]:!bg-transparent data-[state=active]:!text-gray-400 data-[state=active]:shadow-none"
+                >
+                  <Flame size={18} />
+                  Popular
+                </TabsTrigger>
+              </SwiperSlide>
 
-            <SwiperSlide>
-              <TabsTrigger
-                value="popular"
-                 className="  w-full !bg-transparent  text-sm sm:text-base lg:text-lg  !text-gray-400  border-0  shadow-none  rounded-none
-                px-1  py-2  hover:!bg-transparent  hover:!text-gray-400  data-[state=active]:!bg-transparent  data-[state=active]:!text-gray-400  data-[state=active]:shadow-none">
-                <Flame size={18} />
-                Popular
-              </TabsTrigger>
-            </SwiperSlide>
+              <SwiperSlide>
+                <TabsTrigger
+                  value="recent"
+                  className="w-full !bg-transparent text-sm sm:text-base lg:text-lg !text-gray-400 border-0 shadow-none rounded-none px-1 py-2 hover:!bg-transparent hover:!text-gray-400 data-[state=active]:!bg-transparent data-[state=active]:!text-gray-400 data-[state=active]:shadow-none"
+                >
+                  <Plus size={18} />
+                  Recently added
+                </TabsTrigger>
+              </SwiperSlide>
 
-
-            <SwiperSlide>
-              <TabsTrigger
-                value="recent"
-                className="  w-full !bg-transparent  text-sm sm:text-base lg:text-lg  !text-gray-400  border-0  shadow-none  rounded-none
-                px-1  py-2  hover:!bg-transparent  hover:!text-gray-400  data-[state=active]:!bg-transparent  data-[state=active]:!text-gray-400  data-[state=active]:shadow-none">
-                <Plus size={18} />
-                Recently added
-              </TabsTrigger>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <TabsTrigger
-                value="premium" className="  w-full  !bg-transparent  text-sm sm:text-base lg:text-lg  !text-gray-400  border-0 shadow-none
-                rounded-none px-1 py-2  hover:!bg-transparent hover:!text-gray-400 data-[state=active]:!bg-transparent  data-[state=active]:!text-gray-400 data-[state=active]:shadow-none"
-              >
-                <Star size={18} />
-                Premium
-              </TabsTrigger>
-            </SwiperSlide>
-
-          </Swiper>
+            </Swiper>
+          </div>
 
         </TabsList>
       </Tabs>
@@ -164,8 +152,8 @@ useEffect(() => {
             <SwiperSlide>
               <TabsTrigger
                 value="adventure"
-                 className=" w-full  rounded-xl  border  bg-gray-700  px-3  py-3 text-sm text-white">
-              
+                className=" w-full  rounded-xl  border  bg-gray-700  px-3  py-3 text-sm text-white">
+
                 Adventure
               </TabsTrigger>
             </SwiperSlide>
@@ -197,7 +185,7 @@ useEffect(() => {
             </SwiperSlide>
             <SwiperSlide>
               <TabsTrigger
-                value="heroes"  className="w-full rounded-xl border bg-gray-700  px-3  py-3  text-sm text-white">
+                value="heroes" className="w-full rounded-xl border bg-gray-700  px-3  py-3  text-sm text-white">
                 Heroes
               </TabsTrigger>
             </SwiperSlide>

@@ -8,7 +8,6 @@ export async function GET(request: Request) {
 
   let endpoint = "";
 
-  // وقتی ژانر انتخاب شده
   if (genre) {
     switch (category) {
       case "popular":
@@ -29,7 +28,7 @@ export async function GET(request: Request) {
     }
   }
 
-  // وقتی ژانر انتخاب نشده
+  
   else {
     switch (category) {
       case "popular":
