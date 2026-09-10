@@ -103,13 +103,10 @@ function header() {
           </button>
         </div>
 
-
-
-
-
       </div>
       <div className='  max-sm:pt-59 flex justify-center items-center pt-10 pb-10 px-5 '>
         <TabsDemo />
+  
 
       </div>
     </div>

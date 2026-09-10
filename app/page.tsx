@@ -19,7 +19,6 @@ export default function Home() {
       </div>
 
       <div className="relative w-[70%] lg:h-80 m-auto max-md:w-full">
-
        
         <div
           style={{ backgroundImage: "url('/image/houseof.jpeg')" }}

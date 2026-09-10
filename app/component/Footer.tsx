@@ -7,16 +7,16 @@ const footer = () => {
             <div className='flex justify-center pt-10'>
                 <p className='text-white text-2xl '>AGENCY</p>
             </div>
-            <div className='flex space-x-10 justify-center pt-5 '>
+            <div className='flex max-sm:space-x-5 space-x-10 justify-center pt-5 '>
                 {footerlist.map((i, index) => (
                     <ul key={index} className='flex'>
-                        <li className='text-white '>{i}</li>
-                        
+                        <li className='text-white '>{i}</li>     
+
+                                
 
                     </ul>                                                        
 
                 ))}
-                
             </div>
 
         </div>

@@ -19,13 +19,13 @@ const CardDragon = () => {
                     <Star className='fill-white' color='white' size={18} />
                     <Star className='fill-white' color='white' size={18} />
                     <Star className='fill-white' color='white' size={18} />             
-                                                                                                    
+                                                                         
 
                 </div>
             </div>
             <div className='pt-10'>
                 <h1 className='text-white text-4xl'>House of the Dragon</h1>
-                <p className='w-100 pt-3 max-sm:flex max-sm:items-center max-sm:justify-center text-white'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, consequatur. Distinctio porro dicta enim aliquid odit nam in alias. Nobis, voluptatem alias!</p>
+                <p className='w-100 pt-3 max-sm:flex max-sm:w-40 max-sm:items-center max-sm:justify-center text-white'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, consequatur. Distinctio porro dicta enim aliquid odit nam in alias. Nobis, voluptatem alias!</p>
 
             </div>
             <div className='pt-10 flex max-sm:flex-col justify-between '>
@@ -39,7 +39,7 @@ const CardDragon = () => {
                     
                     <button className='bg-blue-400 text-white   w-23 h-9 flex rounded-sm justify-center items-center'><Play size={18} color='white' className='fill-white mr-0.5 pt-0.5' />Watch</button>
                     <button className='text-white flex pr-5'>  <Plus className='mr-1' />MY LIST</button>
-                </div>
+                </div>                   
             </div>
 
 
