@@ -24,8 +24,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../redux/favoritesSlice";
+import type { RootState } from "../redux/store";
 
 export function TabsDemo() {
+  const dispatch = useDispatch();
+  const favorites = useSelector(
+  (state: RootState) => state.favorites.movies
+);
+
   const genreIds: Record<string, number> = {
     action: 28,
     adventure: 12,
@@ -199,52 +207,65 @@ export function TabsDemo() {
           </Swiper>
         </TabsList>
       </Tabs>
-      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+     <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
 
-        {movies.map((movie) => (
+  {movies.map((movie) => {
 
-          <div key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full aspect-[2/3] object-cover rounded-xl"
+    const isFavorite = favorites.some(
+      (item) => item.id === movie.id
+    );
+
+    return (
+      <div key={movie.id}>
+
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+          className="w-full aspect-[2/3] object-cover rounded-xl"
+        />
+
+        <p className="mt-2 text-sm text-white text-center truncate">
+          {movie.title}
+        </p>
+
+        <div className="flex items-center justify-around pt-2">
+
+          <p className="text-white text-sm">
+            {movie.release_date?.slice(0, 4)}
+          </p>
+
+          <Heart
+            size={18}
+            onClick={() => {
+              if (isFavorite) {
+                dispatch(removeFavorite(movie.id));
+              } else {
+                dispatch(addFavorite(movie));
+              }
+            }}
+            className={
+              isFavorite
+                ? "fill-red-400 text-red-400 cursor-pointer"
+                : "text-white cursor-pointer"
+            }
+          />
+
+          <p className="text-yellow-200 flex items-center gap-1 text-sm">
+            <Star
+              size={18}
+              className="fill-amber-200"
+              color="yellow"
             />
-            <p className="mt-2 text-sm text-white text-center truncate">
-              {movie.title}
-            </p>
-            <div className="flex items-center justify-around pt-2">
-              <p className="text-white text-sm">
-                {movie.release_date?.slice(0, 4)}
-              </p>
-              <Heart
-                size={18}
-                onClick={() => {
-                  setActive((prev) =>
-                    prev.includes(movie.id)
-                      ? prev.filter((id) => id !== movie.id)
-                      : [...prev, movie.id]
-                  );
-                }}
-                className={
-                  active.includes(movie.id)
-                    ? "fill-red-400 text-red-400 cursor-pointer"
-                    : "text-white cursor-pointer"
-                }
-              />
 
-              <p className="text-yellow-200 flex items-center gap-1 text-sm">
+            {movie.vote_average?.toFixed(1)}
+          </p>
 
-                <Star
-                  size={18}
-                  className="fill-amber-200"
-                  color="yellow"
-                />
-
-                {movie.vote_average?.toFixed(1)}</p>
-            </div>
-          </div>
-        ))}
+        </div>
       </div>
+    );
+  })}
+
+</div>
     </div>
   );
 }

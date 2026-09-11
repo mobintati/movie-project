@@ -3,6 +3,7 @@ import Header from "./component/Header";
 // pages/_app.js
 import Footer from "./component/Footer";
 import CardDragon from "./feature/CardDragon";
+import Favorites from "./feature/Favorites";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
           <Header />
         </div>
       </div>
+     
 
       <div className="relative w-[70%] lg:h-80 m-auto max-md:w-full">
        
@@ -30,6 +32,10 @@ export default function Home() {
           <CardDragon />
         </div>
 
+      </div>
+
+       <div>
+        <Favorites/>
       </div>
 
 
