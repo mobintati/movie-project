@@ -34,8 +34,7 @@ const CardDragon = () => {
                      <p className='text-white'>trailer</p>
                       <p className='text-white'>reviews</p>
                 </div>
-                <div className='flex  items-center  max-sm:pt-5 space-x-3 max-md:pb-10
-                '>
+                <div className='flex  items-center  max-sm:pt-5 space-x-3 max-md:pb-10'>
                     
                     <button className='bg-blue-400 text-white   w-23 h-9 flex rounded-sm justify-center items-center'><Play size={18} color='white' className='fill-white mr-0.5 pt-0.5' />Watch</button>
                     <button className='text-white flex pr-5'>  <Plus className='mr-1' />MY LIST</button>
